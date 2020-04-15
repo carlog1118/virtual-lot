@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 const UNITS = [
   {
@@ -30,10 +31,10 @@ const UNITS = [
 
 
 function App() {
-  console.log(UNITS);
   return (
     <main className="App">
       <Header/>
+      <Footer/>
     </main>
   );
 }
