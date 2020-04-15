@@ -6,6 +6,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import MainPage from '../MainPage/MainPage';
 import AddUnitPage from '../AddUnitPage/AddUnitPage';
 import UpdateUnitPage from '../UpdateUnitPage/UpdateUnitPage';
+import UnitPage from '../UnitPage/UnitPage';
 
 const UNITS = [
   {
@@ -44,6 +45,7 @@ function App() {
         <Route path='/main' component={MainPage}/>
         <Route path='/addunit' component={AddUnitPage}/>
         <Route path='/updateunit' component={UpdateUnitPage}/>
+        <Route path='/unit' component={UnitPage}/>
       </Switch>
       <Footer/>
     </main>
