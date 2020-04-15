@@ -1,6 +1,8 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import LandingPage from '../LandingPage/LandingPage';
 
 const UNITS = [
   {
@@ -34,6 +36,7 @@ function App() {
   return (
     <main className="App">
       <Header/>
+      <Route path='/' component={LandingPage}/>
       <Footer/>
     </main>
   );
