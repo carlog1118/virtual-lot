@@ -4,19 +4,19 @@ import './FilterBar.css';
 class FilterBar extends Component {
   render(){
     return <>
-      <section class="filter-section">
+      <section >
         <form>
-          <label for="year">Year:</label>
+          <label htmlFor="year">Year:</label>
           <select id="year" name="year">
             <option value="2015">2015</option>
             <option value="2017">2017</option> 
           </select>
-          <label for="make">Make:</label>
+          <label htmlFor="make">Make:</label>
           <select id="make" name="mear">
             <option value="honda">honda</option>
             <option value="toyota">Toyota</option> 
           </select>
-          <label for="make">Make:</label>
+          <label htmlFor="make">Make:</label>
           <select id="make" name="make">
             <option value="civic">Civic</option>
             <option value="avalon">Avalon</option> 
