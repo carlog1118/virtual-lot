@@ -1,8 +1,9 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import LandingPage from '../LandingPage/LandingPage';
+import MainPage from '../MainPage/MainPage';
 
 const UNITS = [
   {
@@ -36,7 +37,10 @@ function App() {
   return (
     <main className="App">
       <Header/>
-      <Route path='/' component={LandingPage}/>
+      <Switch>
+        <Route exact path='/' component={LandingPage}/>
+        <Route path='/main' component={MainPage}/>
+      </Switch>
       <Footer/>
     </main>
   );
