@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import NavBar from '../NavBar/NavBar';
 import './AddUnitPage.css'
 
 class AddUnitPage extends Component {
   render(){
     return <>
+      <NavBar/>
       <section>
         <h2>Add Unit</h2>  
         <form>

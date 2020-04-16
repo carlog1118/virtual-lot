@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import NavBar from '../NavBar/NavBar';
 import './UpdateUnitPage.css'
 
 class UpdateUnitPage extends Component {
   render(){
     return <>
+      <NavBar/>
       <section>
         <h2>Update Unit</h2>  
         <form>
@@ -37,7 +39,7 @@ class UpdateUnitPage extends Component {
           <label htmlFor="status">Status:</label>
           <input type="text" name="status" id="status" placeholder="Status" />
 
-          <button type='submit'>Update</button>
+          <button type='submit'>Submit</button>
         </form>
       </section>  
     </>

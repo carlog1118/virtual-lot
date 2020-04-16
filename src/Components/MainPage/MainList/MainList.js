@@ -3,7 +3,10 @@ import ListItem from './ListItem/ListItem';
 import './MainList.css';
 
 class MainList extends Component {
+  
   render(){
+    const cars= this.props.unitList.units;
+    console.log(cars)
     return <>
       <section>
         <h2>Inventory</h2>
