@@ -8,7 +8,7 @@ class MainPage extends Component {
     const items= this.props.unitList.units;
     return <>
       <NavBar/>
-      <FilterBar/>
+      <FilterBar items={items}/>
       <section>
         <h2>Inventory</h2>
         <ul>
