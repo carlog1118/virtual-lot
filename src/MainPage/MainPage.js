@@ -4,8 +4,12 @@ import FilterBar from './FilterBar/FilterBar';
 import ListItem from './ListItem/ListItem';
 
 class MainPage extends Component {
+  /*constructor(props) {
+    super(props)
+  }*/
+  
   render(){
-    const items= this.props.unitList.units;
+    const items= this.props.units;
     return <>
       <NavBar/>
       <FilterBar items={items}/>

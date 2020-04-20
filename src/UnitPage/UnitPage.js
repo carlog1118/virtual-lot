@@ -4,6 +4,7 @@ import NavBar from '../NavBar/NavBar';
 
 
 class UnitPage extends Component {
+
   render(){
     const unit = this.props.unit;
     return <>
