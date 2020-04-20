@@ -4,7 +4,6 @@ import './ListItem.css';
 
 class ListItem extends Component {
   render(){
-    
     return <>
     <Link to={`/unit/${this.props.id}`}>{this.props.year} {this.props.make} {this.props.model}</Link>
           <ul>

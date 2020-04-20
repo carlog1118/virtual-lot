@@ -19,20 +19,42 @@ class App extends Component {
     let unitId = parseInt(routerProps.match.params.id)
     let unitArray = this.state.units;
     let foundUnit = unitArray.find(obj => obj.id === unitId)
-    return (foundUnit ?  <UnitPage unit={foundUnit}/> :  <NotFoundPage/>)
+    return (foundUnit ?  <UnitPage onDelete={() => this.handleDeleteUnit()} unit={foundUnit}/> :  <NotFoundPage/>)
+  }
+
+  /*handleDeleteUnits = unitId => {
+    this.setState({
+      units: this.state.units.filter(unit => unit.id !== unitId)
+    });
+  };*/
+
+  setUnits = data => {
+    this.setState({
+      units: data,
+    })
+  }
+
+  handleDeleteUnit(unitId){
+    console.log(`handle delete item ${unitId} called`)
   }
 
   componentDidMount() {
     const url = config.API_ENDPOINT;
     fetch(url)
+      .then(response => {
+        if(!response.ok){
+          throw new Error(response.status)
+        }
+        return response;
+      })
       .then(response => response.json())
-      .then(data => {
-        this.setState({ units: data})
+      .then((data) => {
+        //this.setState({ units: data })
+        this.setUnits(data);
       });
   }
 
   render(){
-    console.log(this.state.units)
     return(
       <main className="App">
         <Header/>
@@ -41,7 +63,7 @@ class App extends Component {
           <Route 
             path='/main'
             render={() =>
-              <MainPage units={this.state.units}/>
+              <MainPage units={this.state.units} onDeleteUnit={this.handleDeleteUnit}/>
             }
           />
           <Route path='/addunit' component={AddUnitPage}/>

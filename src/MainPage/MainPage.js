@@ -4,9 +4,6 @@ import FilterBar from './FilterBar/FilterBar';
 import ListItem from './ListItem/ListItem';
 
 class MainPage extends Component {
-  /*constructor(props) {
-    super(props)
-  }*/
   
   render(){
     const items= this.props.units;
@@ -29,7 +26,7 @@ class MainPage extends Component {
                 color={item.color}
                 price={item.price}
                 cost={item.cost}
-                status={item.status}              
+                status={item.status}               
               />
             </li>    
           )}
