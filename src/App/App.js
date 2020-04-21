@@ -11,22 +11,20 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import config from '../config';
 
 class App extends Component {
-  state = {
-    units: [],
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      units: [],
+    }
   }
   
   renderUnit = (routerProps) => {
     let unitId = parseInt(routerProps.match.params.id)
     let unitArray = this.state.units;
     let foundUnit = unitArray.find(obj => obj.id === unitId)
-    return (foundUnit ?  <UnitPage onDelete={() => this.handleDeleteUnit()} unit={foundUnit}/> :  <NotFoundPage/>)
+    return (foundUnit ?  <UnitPage onDelete={(id) => this.handleDeleteUnit(id)} unit={foundUnit}/> :  <NotFoundPage/>)
   }
-
-  /*handleDeleteUnits = unitId => {
-    this.setState({
-      units: this.state.units.filter(unit => unit.id !== unitId)
-    });
-  };*/
 
   setUnits = data => {
     this.setState({
@@ -34,8 +32,19 @@ class App extends Component {
     })
   }
 
-  handleDeleteUnit(unitId){
-    console.log(`handle delete item ${unitId} called`)
+  handleDeleteUnit = (id) => {
+    console.log(`handle delete item ${id} called`)
+    this.setState({
+      units: this.state.units.filter(unit => unit.id !== id)
+    });
+    //history.goBack();
+  }
+
+  handleAddUnit = (unit) => {
+    this.setState({
+      units: [...this.state.units, unit]
+    })
+    console.log(`added ${unit}`)
   }
 
   componentDidMount() {
@@ -63,10 +72,15 @@ class App extends Component {
           <Route 
             path='/main'
             render={() =>
-              <MainPage units={this.state.units} onDeleteUnit={this.handleDeleteUnit}/>
+              <MainPage units={this.state.units} onDeleteUnit={() => this.handleDeleteUnit()}/>
             }
           />
-          <Route path='/addunit' component={AddUnitPage}/>
+          <Route 
+            path='/addunit' 
+            render={() => 
+              <AddUnitPage onAddunit={() => this.handleAddUnit()}/>
+            }  
+          />
           <Route path='/updateunit' component={UpdateUnitPage}/>
           <Route 
             path='/unit/:id' 

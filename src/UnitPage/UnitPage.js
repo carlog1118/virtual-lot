@@ -1,13 +1,39 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
+import config from '../config';
 
 
 class UnitPage extends Component {
+  static defaultProps = {
+    onDelete: () => {},
+  }
 
+  handleClickDelete = (id) => {
+    fetch(`${config.API_ENDPOINT}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      },
+    })
+      .then((res) => {
+        if(!res.ok) {
+          throw new Error(res.status)
+        }
+        return res
+      })
+      .then((res) => res.json())
+      .then(() => {
+        this.props.onDelete(id)
+      })
+      .catch(error => {
+        console.error({ error })
+      })
+  };
+  
   render(){
-    console.log(this.props)
     const unit = this.props.unit;
+    console.log(this.props)
     return <>
       <NavBar/>
       <section className="unit-section">
@@ -27,7 +53,7 @@ class UnitPage extends Component {
       </section>
       <section className="edit-section">
         <Link to='/updateunit'><button>Update</button></Link>
-        <button>Delete</button>
+        <button onClick={()=> this.handleClickDelete(unit.id)/*this.props.onDelete(unit.id)*/}>Delete</button>
       </section> 
     </>
   }
