@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import config from '../config';
 
-
 class UnitPage extends Component {
   static defaultProps = {
     onDelete: () => {},
@@ -22,6 +21,7 @@ class UnitPage extends Component {
         }
       })
       .then(() => {this.props.onDelete(id)})
+      .then(this.props.history.push('/main'))
       .catch(error => {console.error({ error })
     })
   }

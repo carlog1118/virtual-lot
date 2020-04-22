@@ -9,6 +9,11 @@ class AddUnitPage extends Component {
 
   static contextType = UnitsContext;
 
+  cancelAdd = e => {
+    e.preventDefault()
+    this.props.history.push('/main')
+  }
+
   handleSubmit = e => {
     e.preventDefault()
 
@@ -43,6 +48,7 @@ class AddUnitPage extends Component {
     })
     .then(unit => {
       this.context.addUnit(unit)
+      this.props.history.push('/main')
     })
     .catch(error => {
       console.log(error)
@@ -86,7 +92,10 @@ class AddUnitPage extends Component {
           <label htmlFor="status">Status:</label>
           <input type="text" name="status" id="status" placeholder="Status" />
 
+          <div>
           <button  type='submit'>Add</button>
+          <button type='button' onClick={this.cancelAdd}>Cancel</button>
+          </div>
         </form>
       </section>  
     </>

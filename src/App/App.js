@@ -25,6 +25,7 @@ class App extends Component {
       <UnitPage 
         onDelete={(id) => this.handleDeleteUnit(id)} 
         unit={foundUnit}
+        history= {routerProps.history}
       />
         :  <NotFoundPage/>)
   }
@@ -36,10 +37,10 @@ class App extends Component {
   }
 
   handleDeleteUnit = (id) => {
-    console.log(`handle delete item ${id} called`)
     this.setState({
       units: this.state.units.filter(unit => unit.id !== id)
-    });
+    })
+    
   }
 
   handleAddUnit = (unit) => {
@@ -47,7 +48,7 @@ class App extends Component {
     this.setState({ 
       units: [...this.state.units, unit ] 
     })
-    console.log(`added ${unit}`)
+
   }
 
   componentDidMount() {
@@ -71,38 +72,24 @@ class App extends Component {
       units: this.state.units,
       addUnit: this.handleAddUnit,
     }
-    
+
     return(
       <main className="App">
         <Header/>
         <UnitsContext.Provider value={contextValue}>
-        <Switch>
-          <Route exact path='/' component={LandingPage}/>
-          <Route 
-            path='/main'
-            render={() =>
-              <MainPage 
-                //units={this.state.units} 
-                //onDeleteUnit={() => this.handleDeleteUnit()}
-                //history ={this.props.history}
-              />
-            }
-          />
-          <Route 
-            path='/addunit' 
-            render={() => 
-              <AddUnitPage onAddUnit={(data) => this.handleAddUnit(data)}/>
-            }  
-          />
-          <Route path='/updateunit' component={UpdateUnitPage}/>
-          <Route 
-            path='/unit/:id' 
-            render={(routerProps) => 
-              this.renderUnit(routerProps)
-            }
-          />
-          <Route path='' component={NotFoundPage}/>
-        </Switch>
+          <Switch>
+            <Route exact path='/' component={LandingPage}/>
+            <Route path='/main' component={MainPage}/>
+            <Route path='/addunit' component={AddUnitPage}/>
+            <Route path='/updateunit' component={UpdateUnitPage}/>
+            <Route 
+              path='/unit/:id' 
+              render={(routerProps) => 
+                this.renderUnit(routerProps)
+              }
+            />
+            <Route path='' component={NotFoundPage}/>
+          </Switch>
         </UnitsContext.Provider>
         <Footer/>
       </main>
