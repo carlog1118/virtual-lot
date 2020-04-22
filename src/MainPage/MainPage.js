@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar';
 import FilterBar from './FilterBar/FilterBar';
 import ListItem from './ListItem/ListItem';
+import UnitsContext from '../UnitsContext';
+
 
 class MainPage extends Component {
-  state={
-      units: []
+  /*state={
+      //units: []
   };
   
   static getDerivedStateFromProps(props, state) {
@@ -15,13 +17,14 @@ class MainPage extends Component {
       };
     }
     return null;
-  }
+  }*/
+
+  static contextType = UnitsContext;
 
   
 
   render(){
-    console.log(this.props)
-    const items= this.props.units;
+    const items= this.context.units;
     return <>
       <NavBar/>
       <FilterBar items={items}/>

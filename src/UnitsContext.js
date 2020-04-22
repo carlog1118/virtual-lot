@@ -2,9 +2,9 @@ import React from 'react';
 
 const UnitsContext = React.createContext({
   units: [],
-  setUnits: () => {},
-  renderUnits: () => {},
+  addUnit: () => {
 
+  },
 }) 
 
 export default UnitsContext;

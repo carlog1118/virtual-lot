@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import LandingPage from '../LandingPage/LandingPage';
@@ -10,16 +9,14 @@ import UpdateUnitPage from '../UpdateUnitPage/UpdateUnitPage';
 import UnitPage from '../UnitPage/UnitPage';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import config from '../config';
+import UnitsContext from '../UnitsContext';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
+  state = {
       units: [],
-    }
   }
-  
+
   renderUnit = (routerProps) => {
     let unitId = parseInt(routerProps.match.params.id)
     let unitArray = this.state.units;
@@ -27,7 +24,6 @@ class App extends Component {
     return (foundUnit ?  
       <UnitPage 
         onDelete={(id) => this.handleDeleteUnit(id)} 
-
         unit={foundUnit}
       />
         :  <NotFoundPage/>)
@@ -47,8 +43,9 @@ class App extends Component {
   }
 
   handleAddUnit = (unit) => {
-    this.setState({
-      units: [...this.state.units, unit]
+    console.log(`added ${unit}`)
+    this.setState({ 
+      units: [...this.state.units, unit ] 
     })
     console.log(`added ${unit}`)
   }
@@ -64,31 +61,37 @@ class App extends Component {
       })
       .then(response => response.json())
       .then((data) => {
-        //this.setState({ units: data })
         this.setUnits(data);
       });
   }
 
   render(){
+
+    const contextValue = {
+      units: this.state.units,
+      addUnit: this.handleAddUnit,
+    }
+    
     return(
       <main className="App">
         <Header/>
+        <UnitsContext.Provider value={contextValue}>
         <Switch>
           <Route exact path='/' component={LandingPage}/>
           <Route 
             path='/main'
             render={() =>
               <MainPage 
-                units={this.state.units} 
-                onDeleteUnit={() => this.handleDeleteUnit()}
-                history ={this.props.history}
+                //units={this.state.units} 
+                //onDeleteUnit={() => this.handleDeleteUnit()}
+                //history ={this.props.history}
               />
             }
           />
           <Route 
             path='/addunit' 
             render={() => 
-              <AddUnitPage onAddnit={() => this.handleAddUnit()}/>
+              <AddUnitPage onAddUnit={(data) => this.handleAddUnit(data)}/>
             }  
           />
           <Route path='/updateunit' component={UpdateUnitPage}/>
@@ -100,6 +103,7 @@ class App extends Component {
           />
           <Route path='' component={NotFoundPage}/>
         </Switch>
+        </UnitsContext.Provider>
         <Footer/>
       </main>
     )

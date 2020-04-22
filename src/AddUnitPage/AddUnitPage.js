@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar';
 import config from '../config';
+import UnitsContext from '../UnitsContext';
 import './AddUnitPage.css';
 
 
 class AddUnitPage extends Component {
-  static defaultProps = {
-    handleAddUnit: () => {}
-  };
 
-
+  static contextType = UnitsContext;
 
   handleSubmit = e => {
     e.preventDefault()
@@ -38,23 +36,13 @@ class AddUnitPage extends Component {
     })
     .then(res => {
       if(!res.ok){
-        throw new Error(res.status)
+        return res.json().then(e => Promise.reject(e))
+      
       }
-      return res
+      return res.json()
     })
-    .then(res => {res.json()})
-    .then (data => {
-      year.value = ''
-      make.value = ''
-      model.value = ''
-      trim.value = ''
-      vin.value = ''
-      mileage.value = ''
-      color.value = ''
-      price.value = ''
-      cost.value = ''
-      status.value = ''
-      this.props.handleAddUnit(data) 
+    .then(unit => {
+      this.context.addUnit(unit)
     })
     .catch(error => {
       console.log(error)
@@ -62,6 +50,7 @@ class AddUnitPage extends Component {
   }
   
   render(){
+    console.log(this.context)
     return <>
       <NavBar/>
       <section>
