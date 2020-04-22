@@ -9,10 +9,13 @@ class AddUnitPage extends Component {
     handleAddUnit: () => {}
   };
 
+
+
   handleSubmit = e => {
     e.preventDefault()
 
     const { year, make, model, trim, vin, mileage, color, price, cost, status} = e.target;
+    
     const unit = {
       year: year.value,
       make: make.value,
@@ -25,10 +28,9 @@ class AddUnitPage extends Component {
       cost: cost.value,
       status: status.value,
     }
-    console.log(unit)
+
     fetch(config.API_ENDPOINT, {
       method: 'POST',
-
       headers: {
         'content-type': 'application/json'
       },
@@ -66,7 +68,7 @@ class AddUnitPage extends Component {
         <h2>Add Unit</h2>  
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="year">Year:</label>
-          <input type="number" name="year" id="year" placeholder="Year" />
+          <input type="text" name="year" id="year" placeholder="Year" />
         
           <label htmlFor="make">Make:</label>
           <input type="text" name="make" id="make" placeholder="Make" />
@@ -81,16 +83,16 @@ class AddUnitPage extends Component {
           <input type="text" name="vin" id="vin" placeholder="VIN" />
         
           <label htmlFor="mileage">Mileage</label>
-          <input type="number" name="mileage" id="mileage" placeholder="Mileage" />
+          <input type="text" name="mileage" id="mileage" placeholder="Mileage" />
         
           <label htmlFor="color">Color:</label>
           <input type="text" name="color" id="color" placeholder="Color" />
 
           <label htmlFor="price">Sale Price:</label>
-          <input type="number" name="price" id="price" placeholder="Sale Price" />
+          <input type="text" name="price" id="price" placeholder="Sale Price" />
 
           <label htmlFor="cost">Cost:</label>
-          <input type="number" name="cost" id="cost" placeholder="Cost" />
+          <input type="text" name="cost" id="cost" placeholder="Cost" />
 
           <label htmlFor="status">Status:</label>
           <input type="text" name="status" id="status" placeholder="Status" />

@@ -20,20 +20,14 @@ class UnitPage extends Component {
         if(!res.ok) {
           throw new Error(res.status)
         }
-        return res
       })
-      .then((res) => res.json())
-      .then(() => {
-        this.props.onDelete(id)
-      })
-      .catch(error => {
-        console.error({ error })
-      })
-  };
+      .then(() => {this.props.onDelete(id)})
+      .catch(error => {console.error({ error })
+    })
+  }
   
   render(){
     const unit = this.props.unit;
-    console.log(this.props)
     return <>
       <NavBar/>
       <section className="unit-section">

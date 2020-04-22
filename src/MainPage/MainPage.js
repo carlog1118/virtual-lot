@@ -4,8 +4,23 @@ import FilterBar from './FilterBar/FilterBar';
 import ListItem from './ListItem/ListItem';
 
 class MainPage extends Component {
+  state={
+      units: []
+  };
   
+  static getDerivedStateFromProps(props, state) {
+    if (props.units !== state.prevUnits){
+      return {
+        prevUnits: props.units
+      };
+    }
+    return null;
+  }
+
+  
+
   render(){
+    console.log(this.props)
     const items= this.props.units;
     return <>
       <NavBar/>

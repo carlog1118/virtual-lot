@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import LandingPage from '../LandingPage/LandingPage';
@@ -23,7 +24,13 @@ class App extends Component {
     let unitId = parseInt(routerProps.match.params.id)
     let unitArray = this.state.units;
     let foundUnit = unitArray.find(obj => obj.id === unitId)
-    return (foundUnit ?  <UnitPage onDelete={(id) => this.handleDeleteUnit(id)} unit={foundUnit}/> :  <NotFoundPage/>)
+    return (foundUnit ?  
+      <UnitPage 
+        onDelete={(id) => this.handleDeleteUnit(id)} 
+
+        unit={foundUnit}
+      />
+        :  <NotFoundPage/>)
   }
 
   setUnits = data => {
@@ -37,7 +44,6 @@ class App extends Component {
     this.setState({
       units: this.state.units.filter(unit => unit.id !== id)
     });
-    //history.goBack();
   }
 
   handleAddUnit = (unit) => {
@@ -72,13 +78,17 @@ class App extends Component {
           <Route 
             path='/main'
             render={() =>
-              <MainPage units={this.state.units} onDeleteUnit={() => this.handleDeleteUnit()}/>
+              <MainPage 
+                units={this.state.units} 
+                onDeleteUnit={() => this.handleDeleteUnit()}
+                history ={this.props.history}
+              />
             }
           />
           <Route 
             path='/addunit' 
             render={() => 
-              <AddUnitPage onAddunit={() => this.handleAddUnit()}/>
+              <AddUnitPage onAddnit={() => this.handleAddUnit()}/>
             }  
           />
           <Route path='/updateunit' component={UpdateUnitPage}/>
