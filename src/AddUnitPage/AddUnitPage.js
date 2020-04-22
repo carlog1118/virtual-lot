@@ -7,6 +7,7 @@ import './AddUnitPage.css';
 
 class AddUnitPage extends Component {
 
+
   static contextType = UnitsContext;
 
   cancelAdd = e => {
@@ -56,7 +57,6 @@ class AddUnitPage extends Component {
   }
   
   render(){
-    console.log(this.context)
     return <>
       <NavBar/>
       <section>

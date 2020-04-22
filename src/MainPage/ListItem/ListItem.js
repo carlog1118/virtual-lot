@@ -3,20 +3,22 @@ import { Link } from 'react-router-dom';
 import './ListItem.css';
 
 class ListItem extends Component {
+  
   render(){
+    const unit = this.props.unit
     return <>
-    <Link to={`/unit/${this.props.id}`}>{this.props.year} {this.props.make} {this.props.model}</Link>
+    <Link to={`/unit/${unit.id}`}>{unit.year} {unit.make} {unit.model}</Link>
           <ul>
-            <li>{this.props.year}</li>
-            <li>{this.props.make}</li>
-            <li>{this.props.model}</li>
-            <li>{this.props.trim}</li>
-            <li>{this.props.vin}</li>
-            <li>{this.props.mileage}</li>
-            <li>{this.props.color}</li>
-            <li>{this.props.price}</li>
-            <li>{this.props.cost}</li>
-            <li>{this.props.status}</li>
+            <li>{unit.year}</li>
+            <li>{unit.make}</li>
+            <li>{unit.model}</li>
+            <li>{unit.trim}</li>
+            <li>{unit.vin}</li>
+            <li>{unit.mileage}</li>
+            <li>{unit.color}</li>
+            <li>{unit.price}</li>
+            <li>{unit.cost}</li>
+            <li>{unit.status}</li>
           </ul>
     </>
   }

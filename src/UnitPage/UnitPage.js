@@ -46,8 +46,8 @@ class UnitPage extends Component {
           </ul>
       </section>
       <section className="edit-section">
-        <Link to='/updateunit'><button>Update</button></Link>
-        <button onClick={()=> this.handleClickDelete(unit.id)/*this.props.onDelete(unit.id)*/}>Delete</button>
+        <Link to={`/updateunit/${unit.id}`}><button>Update</button></Link>
+        <button onClick={()=> this.handleClickDelete(unit.id)}>Delete</button>
       </section> 
     </>
   }

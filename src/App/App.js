@@ -30,6 +30,18 @@ class App extends Component {
         :  <NotFoundPage/>)
   }
 
+  renderUpdatePage = (routerProps) => {
+      let unitId = parseInt(routerProps.match.params.id)
+      let unitArray = this.state.units;
+      let foundUnit = unitArray.find(obj => obj.id === unitId)
+      return (foundUnit ?  
+        <UpdateUnitPage 
+          unit={foundUnit}
+          history= {routerProps.history}
+        />
+          :  <NotFoundPage/>)
+  }
+
   setUnits = data => {
     this.setState({
       units: data,
@@ -44,7 +56,6 @@ class App extends Component {
   }
 
   handleAddUnit = (unit) => {
-    console.log(`added ${unit}`)
     this.setState({ 
       units: [...this.state.units, unit ] 
     })
@@ -81,7 +92,11 @@ class App extends Component {
             <Route exact path='/' component={LandingPage}/>
             <Route path='/main' component={MainPage}/>
             <Route path='/addunit' component={AddUnitPage}/>
-            <Route path='/updateunit' component={UpdateUnitPage}/>
+            <Route path='/updateunit/:id' 
+              render={(routerProps) =>
+                this.renderUpdatePage(routerProps)
+              }
+            />
             <Route 
               path='/unit/:id' 
               render={(routerProps) => 

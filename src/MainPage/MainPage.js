@@ -6,22 +6,8 @@ import UnitsContext from '../UnitsContext';
 
 
 class MainPage extends Component {
-  /*state={
-      //units: []
-  };
-  
-  static getDerivedStateFromProps(props, state) {
-    if (props.units !== state.prevUnits){
-      return {
-        prevUnits: props.units
-      };
-    }
-    return null;
-  }*/
 
   static contextType = UnitsContext;
-
-  
 
   render(){
     const items= this.context.units;
@@ -33,19 +19,7 @@ class MainPage extends Component {
         <ul>
           {items.map(item =>
             <li key={item.id}>
-              <ListItem
-                id={item.id}
-                year= {item.year}
-                make={item.make}
-                model={item.model}
-                trim={item.trim}
-                vin={item.vin}
-                mileage={item.mileage}
-                color={item.color}
-                price={item.price}
-                cost={item.cost}
-                status={item.status}               
-              />
+              <ListItem unit={item}/>
             </li>    
           )}
         </ul>
