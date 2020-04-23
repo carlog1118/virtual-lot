@@ -15,54 +15,9 @@ class App extends Component {
 
   state = {
       units: [],
-  }
+  };
 
-  renderUnit = (routerProps) => {
-    let unitId = parseInt(routerProps.match.params.id)
-    let unitArray = this.state.units;
-    let foundUnit = unitArray.find(obj => obj.id === unitId)
-    return (foundUnit ?  
-      <UnitPage 
-        onDelete={(id) => this.handleDeleteUnit(id)} 
-        unit={foundUnit}
-        history= {routerProps.history}
-      />
-        :  <NotFoundPage/>)
-  }
-
-  renderUpdatePage = (routerProps) => {
-      let unitId = parseInt(routerProps.match.params.id)
-      let unitArray = this.state.units;
-      let foundUnit = unitArray.find(obj => obj.id === unitId)
-      return (foundUnit ?  
-        <UpdateUnitPage 
-          unit={foundUnit}
-          history= {routerProps.history}
-        />
-          :  <NotFoundPage/>)
-  }
-
-  setUnits = data => {
-    this.setState({
-      units: data,
-    })
-  }
-
-  handleDeleteUnit = (id) => {
-    this.setState({
-      units: this.state.units.filter(unit => unit.id !== id)
-    })
-    
-  }
-
-  handleAddUnit = (unit) => {
-    this.setState({ 
-      units: [...this.state.units, unit ] 
-    })
-
-  }
-
-  componentDidMount() {
+  getUnits = () => {
     const url = config.API_ENDPOINT;
     fetch(url)
       .then(response => {
@@ -75,14 +30,66 @@ class App extends Component {
       .then((data) => {
         this.setUnits(data);
       });
-  }
+  };
+
+  renderUnit = (routerProps) => {
+    let unitId = parseInt(routerProps.match.params.id)
+    let unitArray = this.state.units;
+    let foundUnit = unitArray.find(obj => obj.id === unitId)
+    return (foundUnit ?  
+      <UnitPage 
+        onDelete={(id) => this.handleDeleteUnit(id)} 
+        unit={foundUnit}
+        history= {routerProps.history}
+      />
+        :  <NotFoundPage/>)
+  };
+
+  renderUpdatePage = (routerProps) => {
+      let unitId = parseInt(routerProps.match.params.id)
+      let unitArray = this.state.units;
+      let foundUnit = unitArray.find(obj => obj.id === unitId)
+      return (foundUnit ?  
+        <UpdateUnitPage
+          onUpdate={() => this.getUnits} 
+          unit={foundUnit}
+          history= {routerProps.history}
+        />
+          :  <NotFoundPage/>)
+  };
+
+  setUnits = data => {
+    this.setState({
+      units: data,
+    })
+  };
+
+  handleDeleteUnit = (id) => {
+    this.setState({
+      units: this.state.units.filter(unit => unit.id !== id)
+    })
+  };
+
+  handleAddUnit = (unit) => {
+    this.setState({ 
+      units: [...this.state.units, unit ] 
+    })
+  };
+
+  handleCapitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  componentDidMount() {
+    this.getUnits();
+  };
 
   render(){
-
     const contextValue = {
       units: this.state.units,
       addUnit: this.handleAddUnit,
-    }
+      capitalize: this.handleCapitalize,
+    };
 
     return(
       <main className="App">
@@ -109,7 +116,7 @@ class App extends Component {
         <Footer/>
       </main>
     )
-  }
-}
+  };
+};
 
 export default App;
