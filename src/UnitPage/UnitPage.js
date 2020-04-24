@@ -6,7 +6,7 @@ import config from '../config';
 class UnitPage extends Component {
   static defaultProps = {
     onDelete: () => {},
-  }
+  };
 
   handleClickDelete = (id) => {
     fetch(`${config.API_ENDPOINT}/${id}`, {
@@ -24,7 +24,7 @@ class UnitPage extends Component {
       .then(this.props.history.push('/main'))
       .catch(error => {console.error({ error })
     })
-  }
+  };
   
   render(){
     const unit = this.props.unit;
@@ -51,6 +51,6 @@ class UnitPage extends Component {
       </section> 
     </>
   }
-}
+};
 
 export default UnitPage;

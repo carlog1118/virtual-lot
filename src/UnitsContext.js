@@ -6,7 +6,7 @@ const UnitsContext = React.createContext({
   },
   onCancel: () =>{
   },
-  capitalize: () => {  
+  handleSearch: () => {  
   },
 }); 
 

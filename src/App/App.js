@@ -17,8 +17,10 @@ class App extends Component {
       units: [],
   };
 
-  getUnits = () => {
-    const url = config.API_ENDPOINT;
+
+  getUnits = (searchUrl) => {
+    console.log(searchUrl)
+    const url = `${config.API_ENDPOINT}?${searchUrl}`;
     fetch(url)
       .then(response => {
         if(!response.ok){
@@ -88,7 +90,7 @@ class App extends Component {
     const contextValue = {
       units: this.state.units,
       addUnit: this.handleAddUnit,
-      capitalize: this.handleCapitalize,
+      handleSearch: this.getUnits,
     };
 
     return(

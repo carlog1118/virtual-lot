@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar';
-import FilterBar from './FilterBar/FilterBar';
+import FilterBar from '../FilterBar/FilterBar';
 import ListItem from './ListItem/ListItem';
 import UnitsContext from '../UnitsContext';
 
@@ -13,7 +13,7 @@ class MainPage extends Component {
     const items= this.context.units;
     return <>
       <NavBar/>
-      <FilterBar items={items}/>
+      <FilterBar/>
       <section>
         <h2>Inventory</h2>
         <ul>
