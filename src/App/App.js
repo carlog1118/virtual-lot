@@ -20,7 +20,7 @@ class App extends Component {
   };
 
   getUnits = (searchUrl) => {
-    const url = `${config.API_ENDPOINT}?${searchUrl}`;
+    const url = `${config.API_ENDPOINT}/?${searchUrl}`;
     fetch(url, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
