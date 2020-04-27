@@ -10,6 +10,8 @@ import UnitPage from '../UnitPage/UnitPage';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import config from '../config';
 import UnitsContext from '../UnitsContext';
+import PrivateRoute from '../Utils/PrivateRoute';
+import TokenService from '../token-service';
 
 class App extends Component {
 
@@ -17,11 +19,13 @@ class App extends Component {
       units: [],
   };
 
-
   getUnits = (searchUrl) => {
-    console.log(searchUrl)
     const url = `${config.API_ENDPOINT}?${searchUrl}`;
-    fetch(url)
+    fetch(url, {
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+        },
+      })
       .then(response => {
         if(!response.ok){
           throw new Error(response.status)
@@ -31,7 +35,8 @@ class App extends Component {
       .then(response => response.json())
       .then((data) => {
         this.setUnits(data);
-      });
+      })
+      .catch(error => alert(error))
   };
 
   renderUnit = (routerProps) => {
@@ -82,10 +87,6 @@ class App extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
-  componentDidMount() {
-    this.getUnits();
-  };
-
   render(){
     const contextValue = {
       units: this.state.units,
@@ -97,23 +98,17 @@ class App extends Component {
       <main className="App">
         <Header/>
         <UnitsContext.Provider value={contextValue}>
+          
           <Switch>
+            
             <Route exact path='/' component={LandingPage}/>
-            <Route path='/main' component={MainPage}/>
-            <Route path='/addunit' component={AddUnitPage}/>
-            <Route path='/updateunit/:id' 
-              render={(routerProps) =>
-                this.renderUpdatePage(routerProps)
-              }
-            />
-            <Route 
-              path='/unit/:id' 
-              render={(routerProps) => 
-                this.renderUnit(routerProps)
-              }
-            />
-            <Route path='' component={NotFoundPage}/>
+            <PrivateRoute path='/main' component={MainPage}/>
+            <PrivateRoute path='/addunit' component={AddUnitPage}/>
+            <PrivateRoute path='/updateunit/:id' component={this.renderUpdatePage}/>
+            <PrivateRoute path='/unit/:id' component={this.renderUnit}/>
+            <PrivateRoute path='' component={NotFoundPage}/>
           </Switch>
+          
         </UnitsContext.Provider>
         <Footer/>
       </main>

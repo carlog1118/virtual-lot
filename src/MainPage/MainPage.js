@@ -8,6 +8,10 @@ import UnitsContext from '../UnitsContext';
 class MainPage extends Component {
 
   static contextType = UnitsContext;
+  
+  componentDidMount(){
+    this.context.handleSearch()
+  }
 
   render(){
     const items= this.context.units;

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar';
 import UnitsContext from '../UnitsContext';
+import TokenService from '../token-service';
 import config from "../config";
 import './UpdateUnitPage.css';
 
 class UpdateUnitPage extends Component {
   static defaultProps = {
     onUpdate: () => {},
+    unit: [],
   }
   
   state= {
@@ -37,7 +39,8 @@ class UpdateUnitPage extends Component {
     fetch(`${config.API_ENDPOINT}/${id}`, {
       method: 'PATCH',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify(updates),
     })

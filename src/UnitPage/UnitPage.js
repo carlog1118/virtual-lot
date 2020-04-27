@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
+import TokenService from '../token-service';
 import config from '../config';
 
 class UnitPage extends Component {
   static defaultProps = {
     onDelete: () => {},
+    unit: [],
   };
 
   handleClickDelete = (id) => {
     fetch(`${config.API_ENDPOINT}/${id}`, {
       method: 'DELETE',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
     })
       .then((res) => {

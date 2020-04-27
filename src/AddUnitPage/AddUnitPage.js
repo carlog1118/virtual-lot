@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar';
 import config from '../config';
 import UnitsContext from '../UnitsContext';
+import TokenService from '../token-service';
 import './AddUnitPage.css';
 
 
@@ -39,7 +40,8 @@ class AddUnitPage extends Component {
     fetch(config.API_ENDPOINT, {
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify(unit),
     })
