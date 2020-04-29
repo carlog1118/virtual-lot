@@ -26,16 +26,14 @@ class LoginForm extends Component {
       .catch(res => {
         alert(res.error)
       })
-  }
+  };
 
   render(){
     return <>
       <section>
       <h2>Log In</h2>
-      <h3>App is currently in static state. Just click
-        Log In to proceed.
+      <h3>To test the features of this application use the credentials below to log in. The password is case sensitive.
       </h3>
-      <p>To test the features of this application use the credentials below to log in. The password is case sensitive.</p>
       <ul>
         <li>Username: Demouser</li>
         <li>Password: Demopass123</li>
@@ -45,11 +43,11 @@ class LoginForm extends Component {
         <input type="text" name='user_name' id='user_name' placeholder='Username' />
         <label htmlFor="password">Password</label>
         <input type="text" name='password' id='password' placeholder='Password' />
-        <button type='submit'>submit</button>
+        <button type='submit'>Submit</button>
       </form>
     </section>
     </>
-  }
-}
+  };
+};
 
 export default LoginForm;
