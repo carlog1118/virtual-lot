@@ -37,33 +37,35 @@ class AddUnitPage extends Component {
       status: this.capitalize(status.value),
     };
 
-    fetch(config.API_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      },
-      body: JSON.stringify(unit),
-    })
-    .then(res => {
-      if(!res.ok){
-        throw new Error(res.status)
-      }
-      return res.json()
-    })
-    .then(unit => {
-      this.context.addUnit(unit)
-      this.props.history.push('/main')
-    })
-    .catch(e=> alert(e))
-    };
+    if (this.context.handleValidate(unit)){
+      fetch(config.API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'authorization': `bearer ${TokenService.getAuthToken()}`,
+        },
+        body: JSON.stringify(unit),
+      })
+      .then(res => {
+        if(!res.ok){
+          throw new Error(res.status)
+        }
+        return res.json()
+      })
+      .then(unit => {
+        this.context.addUnit(unit)
+        this.props.history.push('/main')
+      })
+      .catch(e=> alert(e))
+    }
+  };
   
   render(){
     return <>
       <NavBar/>
       <section>
         <h2>Add Unit</h2>  
-        <form onSubmit={this.handleSubmit}>
+        <form  name="addForm" onSubmit={this.handleSubmit}>
           <label htmlFor="year">Year:</label>
           <input type="text" name="year" id="year" placeholder="Year" required/>
         
@@ -92,7 +94,11 @@ class AddUnitPage extends Component {
           <input type="text" name="cost" id="cost" placeholder="Cost" required/>
 
           <label htmlFor="status">Status:</label>
-          <input type="text" name="status" id="status" placeholder="Status" required/>
+          <select id="status" name="Status" required>
+            <option value="Available">Available</option>
+            <option value="Pending">Pending</option>
+            <option value="Sold">Sold</option>
+          </select>
 
           <div>
           <button  type='submit'>Add</button>
@@ -101,7 +107,8 @@ class AddUnitPage extends Component {
         </form>
       </section>  
     </>
-  }
-}
+  };
+};
 
 export default AddUnitPage;
+

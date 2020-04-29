@@ -8,6 +8,9 @@ const UnitsContext = React.createContext({
   },
   handleSearch: () => {  
   },
+  handleValidate: () => {
+
+  },
 }); 
 
 export default UnitsContext;

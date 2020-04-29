@@ -16,8 +16,8 @@ class ListItem extends Component {
             <li>{unit.vin}</li>
             <li>{unit.mileage}</li>
             <li>{unit.color}</li>
-            <li>{unit.price}</li>
-            <li>{unit.cost}</li>
+            <li>${unit.price}</li>
+            <li>${unit.cost}</li>
             <li>{unit.status}</li>
           </ul>
     </>

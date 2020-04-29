@@ -9,50 +9,65 @@ class UpdateUnitPage extends Component {
   static defaultProps = {
     onUpdate: () => {},
     unit: [],
-  }
+  };
   
   state= {
     
-  }
+  };
   
   static contextType = UnitsContext;
   
   capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  };
   
   handleChange = e => {
     this.setState({[e.target.name]: this.capitalize(e.target.value)})
-  }
+  };
 
   handleCancel = () => {
     this.props.history.push('/main')
-  }
+  };
 
   handleSubmit = e => {
     e.preventDefault()
+
+    const newUnitInfo = {
+      year: e.target.year.value,
+      make: this.capitalize(e.target.make.value),
+      model: this.capitalize(e.target.model.value),
+      trim: this.capitalize(e.target.trim.value),
+      vin: this.capitalize(e.target.vin.value),
+      mileage: e.target.mileage.value,
+      color: this.capitalize(e.target.color.value),
+      price: e.target.price.value,
+      cost: e.target.cost.value,
+      status: this.capitalize(e.target.status.value),
+    };
 
     const id = this.props.unit.id
 
     const updates = this.state
 
-    fetch(`${config.API_ENDPOINT}/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json',
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      },
-      body: JSON.stringify(updates),
-    })
-    .then(res => {
-      if(!res.ok) {
-        throw new Error(res.status)
-      }
-    })
-    .then(this.props.onUpdate())
-    .catch(e=> alert(e))
-    .then(this.props.history.push('/main'))
-  }
+    if(this.context.handleValidate(newUnitInfo)){
+      fetch(`${config.API_ENDPOINT}/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'content-type': 'application/json',
+          'authorization': `bearer ${TokenService.getAuthToken()}`,
+        },
+        body: JSON.stringify(updates),
+      })
+      .then(res => {
+        if(!res.ok) {
+          throw new Error(res.status)
+        }
+      })
+      .then(this.props.onUpdate())
+      .catch(e=> alert(e))
+      .then(this.props.history.push('/main'))
+    }
+  };
   
   render(){
     const unit= this.props.unit;
@@ -82,14 +97,18 @@ class UpdateUnitPage extends Component {
           <label htmlFor="color">Color:</label>
           <input type="text" name="color" id="color" defaultValue={unit.color} onChange={this.handleChange} required/>
 
-          <label htmlFor="saleprice">Sale Price:</label>
-          <input type="text" name="saleprice" id="saleprice" defaultValue={unit.price} onChange={this.handleChange} required/>
+          <label htmlFor="price">Sale Price:</label>
+          <input type="text" name="price" id="price" defaultValue={unit.price} onChange={this.handleChange} required/>
 
           <label htmlFor="cost">Cost:</label>
           <input type="text" name="cost" id="cost" defaultValue={unit.cost} onChange={this.handleChange} required/>
 
           <label htmlFor="status">Status:</label>
-          <input type="text" name="status" id="status" defaultValue={unit.status} onChange={this.handleChange} required/>
+          <select id="status" name="status" defaultValue={unit.status} onChange={this.handleChange} required>
+            <option value="Available">Available</option>
+            <option value="Pending">Pending</option>
+            <option value="Sold">Sold</option>
+          </select>
 
           <button type='submit'>Submit</button>
           
@@ -97,6 +116,6 @@ class UpdateUnitPage extends Component {
       </section>  
     </>
   }
-}
+};
 
 export default UpdateUnitPage;

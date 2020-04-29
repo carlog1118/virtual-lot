@@ -19,8 +19,67 @@ class App extends Component {
       units: [],
   };
 
+  validateUnitForm = (unit) => {
+    if (unit.year.length !== 4) {
+      alert('Year must be 4 digits.')
+      return false
+    }
+    if(!this.allNumeric(unit.year)){
+      alert('Year must only contain numbers.')
+      return false
+    }
+    if (unit.vin.length !== 14 ) {
+      alert('Vin must be 14 characters.')
+      return false
+    }
+    if (!this.alphanumeric(unit.vin)){
+      alert('Vin must only contain numbers and letters.')
+      return false
+    }
+    if (!this.allNumeric(unit.mileage)){
+      alert('Mileage may only contain numbers.')
+      return false
+    }
+    if (!this.allLetters(unit.color)){
+      alert('Color may only include letters.')
+      return false
+    }
+    if (!this.allNumeric(unit.price)){
+      alert('Price may only include numbers.')
+      return false
+    } if (!this.allNumeric(unit.cost)){
+      alert('Cost may only include numbers.')
+      return false
+    } 
+    return true;
+  };
+
+  alphanumeric = (string) => {
+    const letterNumber = /^[0-9a-zA-Z]+$/;
+    if(string.match(letterNumber)){
+      return true;
+    } 
+      return false;
+  };
+
+  allNumeric = (string) => {
+    const numbers = /^[0-9]+$/;   
+    if(string.match(numbers)){
+      return true;
+    } 
+      return false;
+  };
+
+  allLetters = (string) => {
+    const letters = /^[A-Za-z]+$/;
+    if(string.match(letters)){
+      return true;
+    }
+     return false; 
+  };
+
   getUnits = (searchUrl) => {
-    const url = `${config.API_ENDPOINT}/?${searchUrl}`;
+    const url = `${config.API_ENDPOINT}?${searchUrl}`;
     fetch(url, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
@@ -92,6 +151,7 @@ class App extends Component {
       units: this.state.units,
       addUnit: this.handleAddUnit,
       handleSearch: this.getUnits,
+      handleValidate: this.validateUnitForm,
     };
 
     return(
