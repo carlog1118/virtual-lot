@@ -73,49 +73,49 @@ class UpdateUnitPage extends Component {
     const unit= this.props.unit;
     return <>
       <NavBar/>
-      <section>
-        <h2>Update Unit</h2>  
-        <form onSubmit={this.handleSubmit}>
+      <section className="update-section">
+        <h2 className="update-header">Update Unit</h2>  
+        <form className="update-form" onSubmit={this.handleSubmit}>
           <label htmlFor="year">Year:</label>
-          <input type="text" name="year" id="year" defaultValue={unit.year} onChange={this.handleChange} required/>
+          <input className="update-input" type="text" name="year" id="year" defaultValue={unit.year} onChange={this.handleChange} required/>
         
           <label htmlFor="make">Make:</label>
-          <input type="text" name="make" id="make" defaultValue={unit.make} onChange={this.handleChange} required/>
+          <input className="update-input" type="text" name="make" id="make" defaultValue={unit.make} onChange={this.handleChange} required/>
         
           <label htmlFor="model">Model:</label>
-          <input type="text" name="model" id="model" defaultValue={unit.model} onChange={this.handleChange} required/>
+          <input className="update-input" type="text" name="model" id="model" defaultValue={unit.model} onChange={this.handleChange} required/>
         
           <label htmlFor="trim">Trim:</label>
-          <input type="text" name="trim" id="trim" defaultValue={unit.trim} onChange={this.handleChange} required/>
+          <input className="update-input" type="text" name="trim" id="trim" defaultValue={unit.trim} onChange={this.handleChange} required/>
         
           <label htmlFor="vin">VIN:</label>
-          <input type="text" name="vin" id="vin" defaultValue={unit.vin} onChange={this.handleChange} required/>
+          <input className="update-input" type="text" name="vin" id="vin" defaultValue={unit.vin} onChange={this.handleChange} required/>
         
           <label htmlFor="mileage">Mileage</label>
-          <input type="text" name="mileage" id="mileage" defaultValue={unit.mileage} onChange={this.handleChange} required/>
+          <input className="update-input" type="text" name="mileage" id="mileage" defaultValue={unit.mileage} onChange={this.handleChange} required/>
         
           <label htmlFor="color">Color:</label>
-          <input type="text" name="color" id="color" defaultValue={unit.color} onChange={this.handleChange} required/>
+          <input className="update-input" type="text" name="color" id="color" defaultValue={unit.color} onChange={this.handleChange} required/>
 
           <label htmlFor="price">Sale Price:</label>
-          <input type="text" name="price" id="price" defaultValue={unit.price} onChange={this.handleChange} required/>
+          <input className="update-input" type="text" name="price" id="price" defaultValue={unit.price} onChange={this.handleChange} required/>
 
           <label htmlFor="cost">Cost:</label>
-          <input type="text" name="cost" id="cost" defaultValue={unit.cost} onChange={this.handleChange} required/>
+          <input className="update-input" type="text" name="cost" id="cost" defaultValue={unit.cost} onChange={this.handleChange} required/>
 
           <label htmlFor="status">Status:</label>
-          <select id="status" name="status" defaultValue={unit.status} onChange={this.handleChange} required>
+          <select className="update-input" id="status" name="status" defaultValue={unit.status} onChange={this.handleChange} required>
             <option value="Available">Available</option>
             <option value="Pending">Pending</option>
             <option value="Sold">Sold</option>
           </select>
 
-          <button type='submit'>Submit</button>
+          <button type="submit">Update</button>
           
         </form>
       </section>  
     </>
-  }
+  };
 };
 
 export default UpdateUnitPage;

@@ -4,15 +4,14 @@ import './Hero.css';
 class Hero extends Component {
   render(){
     return <>
-      <section>
-        <h1>Virtual Lot</h1>
-        <p>Auto Inventory Made Easy</p>
-        <p>Virtual Lot is an application used to help auto dealers
-           maintain an inventory database. This application is currently
-           still in development.</p>
+      <section className="hero">      
+        <h2 id="hero-header">Auto Inventory Made Easy</h2>
+        <p id="hero-text">Virtual Lot is an application used to help auto dealers
+           maintain an inventory database. Use this application to add, remove, and
+           keep track of the sale status of your inventory with ease.</p>
       </section>
     </>
-  }
-}
+  };
+};
 
 export default Hero;

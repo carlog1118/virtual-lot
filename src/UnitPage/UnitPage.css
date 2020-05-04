@@ -1,0 +1,17 @@
+.unit-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f2fcff;
+}
+
+.unit-header {
+  font-size: 32px;
+  color: #003e4e;
+}
+
+.edit-section {
+  display: flex;
+  justify-content: center;
+  background-color: #f2fcff;
+}

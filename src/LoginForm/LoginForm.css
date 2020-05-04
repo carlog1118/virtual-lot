@@ -1,22 +1,31 @@
-section {
+.login-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 15px;
+  background-color: #f2fcff;
+  font-family: 'Questrial', sans-serif;
+  margin-bottom: 0px;
+}
+
+.login-header {
+  font-size: 32px;
+  color: #003e4e;
+}
+
+.login-text {
+  max-width: 500px;
+  font-size: 18px;
+  color: #003e4e;
+  line-height: 24px;
+  text-align: center;
 }
   
-form {
+.login-form {
   max-width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #003e4e; 
 }
- 
-input {
-  text-align: center;
-  margin: 5px;
-}
-   
-ul {
-  list-style: none
-}
+

@@ -7,21 +7,21 @@ class ListItem extends Component {
   render(){
     const unit = this.props.unit
     return <>
-    <Link to={`/unit/${unit.id}`}>{unit.year} {unit.make} {unit.model}</Link>
+    <Link className="unit-link" to={`/unit/${unit.id}`}>{unit.year} {unit.make} {unit.model}</Link>
           <ul>
-            <li>{unit.year}</li>
-            <li>{unit.make}</li>
-            <li>{unit.model}</li>
-            <li>{unit.trim}</li>
-            <li>{unit.vin}</li>
-            <li>{unit.mileage}</li>
-            <li>{unit.color}</li>
-            <li>${unit.price}</li>
-            <li>${unit.cost}</li>
-            <li>{unit.status}</li>
+            <li>Year: {unit.year}</li>
+            <li>Make: {unit.make}</li>
+            <li>Model: {unit.model}</li>
+            <li>Trim: {unit.trim}</li>
+            <li>VIN: {unit.vin}</li>
+            <li>Mileage: {unit.mileage}</li>
+            <li>Color: {unit.color}</li>
+            <li>Sale Price: ${unit.price}</li>
+            <li>Dealer Cost: ${unit.cost}</li>
+            <li>Availability: {unit.status}</li>
           </ul>
     </>
-  }
-}
+  };
+};
 
 export default ListItem;

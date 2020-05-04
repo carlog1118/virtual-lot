@@ -1,0 +1,16 @@
+.main-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f2fcff;
+}
+
+.main-header {
+  color: #003e4e;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.unit-li {
+  padding-bottom: 30px;
+}

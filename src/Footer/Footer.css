@@ -1,7 +1,21 @@
-* {
-  box-sizing: border-box;
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #003e4e;
+  padding: 10px;
 }
 
-footer {
-  text-align: center;
+.github-anch {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.github-anch:visited {
+  color: white;
+}
+
+.footer-text {
+  color: white;
 }

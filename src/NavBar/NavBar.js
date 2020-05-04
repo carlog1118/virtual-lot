@@ -12,9 +12,9 @@ class NavBar extends Component {
   render(){
     return <>
       <nav>
-        <Link to='/main'>List View</Link>
-        <Link to='/addunit'>Add Unit</Link>
-        <Link onClick={this.handleLogOut} to='/'>Log Out</Link> 
+        <Link className="nav-link" to='/main'>List View</Link>
+        <Link className="nav-link" to='/addunit'>Add Unit</Link>
+        <Link className="nav-link" onClick={this.handleLogOut} to='/'>Log Out</Link> 
       </nav>
     </>
   };

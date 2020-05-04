@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import TokenService from '../token-service';
 import config from '../config';
+import './UnitPage.css';
 
 class UnitPage extends Component {
   static defaultProps = {
@@ -34,7 +35,7 @@ class UnitPage extends Component {
     return <>
       <NavBar/>
       <section className="unit-section">
-        <h2>{unit.year} {unit.make} {unit.model}</h2>
+        <h2 className="unit-header">{unit.year} {unit.make} {unit.model}</h2>
           <ul className="unit-details">
             <li>Year: {unit.year}</li>
             <li>Make: {unit.make}</li>
@@ -51,9 +52,9 @@ class UnitPage extends Component {
       <section className="edit-section">
         <Link to={`/updateunit/${unit.id}`}><button>Update</button></Link>
         <button onClick={()=> this.handleClickDelete(unit.id)}>Delete</button>
-      </section> 
+      </section>  
     </>
-  }
+  };
 };
 
 export default UnitPage;

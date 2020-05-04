@@ -1,4 +1,22 @@
-form {
-    display: flex;
-    flex-direction: column;    
+.update-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.update-header {
+  font-size: 32px;
+  color: #003e4e;
+}
+
+.update-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #003e4e;
+}
+
+.update-input {
+  margin-bottom: 10px;
+}
+

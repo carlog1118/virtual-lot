@@ -1,3 +1,21 @@
-section {
-    text-align: Center;
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f2fcff;
 }
+
+#hero-header {
+  color: #003e4e;
+  font-size: 36px;
+}
+
+#hero-text { 
+  max-width: 500px;
+  font-size: 18px;
+  color: #003e4e;
+  line-height: 24px;
+  text-align: center;
+}
+
+

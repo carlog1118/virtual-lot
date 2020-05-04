@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import LandingPage from '../LandingPage/LandingPage';
 import MainPage from '../MainPage/MainPage';
 import AddUnitPage from '../AddUnitPage/AddUnitPage';
@@ -157,20 +156,16 @@ class App extends Component {
     return(
       <main className="App">
         <Header/>
-        <UnitsContext.Provider value={contextValue}>
-          
-          <Switch>
-            
+        <UnitsContext.Provider value={contextValue}>          
+          <Switch>            
             <Route exact path='/' component={LandingPage}/>
             <PrivateRoute path='/main' component={MainPage}/>
             <PrivateRoute path='/addunit' component={AddUnitPage}/>
             <PrivateRoute path='/updateunit/:id' component={this.renderUpdatePage}/>
             <PrivateRoute path='/unit/:id' component={this.renderUnit}/>
             <PrivateRoute path='' component={NotFoundPage}/>
-          </Switch>
-          
+          </Switch>          
         </UnitsContext.Provider>
-        <Footer/>
       </main>
     )
   };

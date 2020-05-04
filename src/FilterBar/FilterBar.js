@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UnitsContext from '../UnitsContext';
-import './FilterBar';
+import './FilterBar.css'
 
 class FilterBar extends Component {
   static contextType = UnitsContext;
@@ -15,21 +15,20 @@ class FilterBar extends Component {
   onReset = (e) => {
     e.preventDefault();
     this.context.handleSearch();
-  }
+  };
 
   render(){
     return <>
-        <form onSubmit={this.onSearch}>
-          <label htmlFor='make'></label>
-          <input name='make' id='make' placeholder='Make'></input>
-          <label htmlFor='model'></label>
-          <input name='model' id='model' placeholder='Model'></input>
-          <button type='submit'>Filter</button>
-          <button type='button' onClick={this.onReset}>Reset Filter</button>
+        <form className="filter-form" onSubmit={this.onSearch}>         
+          <label htmlFor="make"></label>
+          <input className="filter-input" name="make" id="make" placeholder="Make"></input>
+          <label htmlFor="model"></label>
+          <input className="filter-input" name="model" id="model" placeholder="Model"></input>          
+          <button type="submit">Filter</button>
+          <button type="button" onClick={this.onReset}>Reset Filter</button>         
         </form>
-
     </>
-  }
-}
+  };
+};
 
 export default FilterBar;

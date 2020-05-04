@@ -63,46 +63,46 @@ class AddUnitPage extends Component {
   render(){
     return <>
       <NavBar/>
-      <section>
-        <h2>Add Unit</h2>  
-        <form  name="addForm" onSubmit={this.handleSubmit}>
+      <section className="addunit-section">
+        <h2 className="addunit-header">Add Unit</h2>  
+        <form  className="addunit-form" name="addForm" onSubmit={this.handleSubmit}>
           <label htmlFor="year">Year:</label>
-          <input type="text" name="year" id="year" placeholder="Year" required/>
+          <input className="addunit-input" type="text" name="year" id="year" placeholder="Year" required/>
         
           <label htmlFor="make">Make:</label>
-          <input type="text" name="make" id="make" placeholder="Make" required/>
+          <input className="addunit-input" type="text" name="make" id="make" placeholder="Make" required/>
         
           <label htmlFor="model">Model:</label>
-          <input type="text" name="model" id="model" placeholder="Model" required/>
+          <input className="addunit-input" type="text" name="model" id="model" placeholder="Model" required/>
         
           <label htmlFor="trim">Trim:</label>
-          <input type="text" name="trim" id="trim" placeholder="Trim" required/>
+          <input className="addunit-input" type="text" name="trim" id="trim" placeholder="Trim" required/>
         
           <label htmlFor="vin">VIN:</label>
-          <input type="text" name="vin" id="vin" placeholder="VIN" required/>
+          <input className="addunit-input" type="text" name="vin" id="vin" placeholder="VIN" required/>
         
           <label htmlFor="mileage">Mileage</label>
-          <input type="text" name="mileage" id="mileage" placeholder="Mileage" required/>
+          <input className="addunit-input" type="text" name="mileage" id="mileage" placeholder="Mileage" required/>
         
           <label htmlFor="color">Color:</label>
-          <input type="text" name="color" id="color" placeholder="Color" required/>
+          <input className="addunit-input" type="text" name="color" id="color" placeholder="Color" required/>
 
           <label htmlFor="price">Sale Price:</label>
-          <input type="text" name="price" id="price" placeholder="Sale Price" required/>
+          <input className="addunit-input" type="text" name="price" id="price" placeholder="Sale Price" required/>
 
           <label htmlFor="cost">Cost:</label>
-          <input type="text" name="cost" id="cost" placeholder="Cost" required/>
+          <input className="addunit-input" type="text" name="cost" id="cost" placeholder="Cost" required/>
 
           <label htmlFor="status">Status:</label>
-          <select id="status" name="Status" required>
+          <select className="addunit-input" id="status" name="Status" required>
             <option value="Available">Available</option>
             <option value="Pending">Pending</option>
             <option value="Sold">Sold</option>
           </select>
 
           <div>
-          <button  type='submit'>Add</button>
-          <button type='button' onClick={this.cancelAdd}>Cancel</button>
+          <button  type="submit">Add</button>
+          <button type="button" onClick={this.cancelAdd}>Cancel</button>
           </div>
         </form>
       </section>  

@@ -1,0 +1,9 @@
+.not-section {
+  display: flex;
+  justify-content: center;
+}
+
+.not-header {
+  font-size: 32px;
+  color: #003e4e;
+}
