@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   background-color: #f2fcff;
+  text-align: center;
 }
 
 #hero-header {
@@ -15,7 +16,7 @@
   font-size: 18px;
   color: #003e4e;
   line-height: 24px;
-  text-align: center;
+  padding: 5px;
 }
 
 
