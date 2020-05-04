@@ -8,7 +8,8 @@ class Hero extends Component {
         <h2 id="hero-header">Auto Inventory Made Easy</h2>
         <p id="hero-text">Virtual Lot is an application used to help auto dealers
            maintain an inventory database. Use this application to add, remove, and
-           keep track of the sale status of your inventory with ease.</p>
+           keep track of the sale status of your inventory with ease.
+        </p>
       </section>
     </>
   };
