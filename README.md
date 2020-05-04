@@ -2,7 +2,7 @@
 
 [View The App](https://virtual-lot.now.sh)
 
-![Virtual Lot Landing Page](/imgs/vl-landing)
+![Virtual Lot Landing Page](/imgs/vl-landing.png)
 
 ## Summary
 Virtual lot is an app designed to help auto retailers maintain their inventory. The client uses the Fetch API
