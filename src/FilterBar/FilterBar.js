@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UnitsContext from '../UnitsContext';
-import './FilterBar.css'
+import './FilterBar.css';
 
 class FilterBar extends Component {
   static contextType = UnitsContext;
